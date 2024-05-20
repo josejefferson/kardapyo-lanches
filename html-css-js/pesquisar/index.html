@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/static/img/favicon.png" type="image/png" />
+    <title>Pesquisar | Kardapyo Lanches | Cardápio Digital Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="/static/css/global.css" />
+    <link rel="stylesheet" href="/static/css/index.css" />
+    <script>
+      const urlParams = new URLSearchParams(window.location.search)
+      const search = urlParams.get('q')
+    </script>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <nav class="navbar bg-base-100">
+      <div class="container mx-auto max-w-6xl">
+        <!-- Título -->
+        <div class="flex-1">
+          <a href="/" class="btn btn-ghost text-xl">
+            <img src="/static/img/logo.svg" alt="Logo" class="h-10" />
+          </a>
+        </div>
+
+        <div class="flex gap-2">
+          <!-- Pesquisa -->
+          <form action="/pesquisar/" method="GET">
+            <label class="input input-bordered flex items-center gap-2 h-10 w-36 md:w-auto">
+              <input type="text" name="q" placeholder="Pesquisar..." class="search w-full" required />
+              <button type="submit" class="fa-solid fa-magnifying-glass"></button>
+            </label>
+          </form>
+
+          <!-- Perfil -->
+          <div class="dropdown dropdown-end">
+            <div class="avatar placeholder" tabindex="0" role="button">
+              <div class="bg-neutral text-neutral-content rounded-full w-10">
+                <span>JD</span>
+              </div>
+            </div>
+
+            <!-- Dropdown perfil -->
+            <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+              <li><a href="/admin">Administração</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a>Sair</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="detalhe"></div>
+
+    <main class="container px-4 mt-8 mx-auto max-w-6xl">
+      <h1 class="text-5xl font-thin mb-8">Resultados para "<span class="search-term"></span>"</h1>
+
+      <div class="grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
+        <a href="/produto" class="card bg-base-100 shadow-xl">
+          <figure>
+            <img
+              class="object-cover w-full h-44"
+              src="https://www.estadao.com.br/resizer/v2/OYMESDUUBVJJDBXTFC4YD253O4.jpg?quality=80&auth=288974b5d339d197eb843c3578f77fbd34d131698ef6c702cab28d092c61658a&width=720&height=503&smart=true"
+            />
+          </figure>
+          <div class="card-body p-6">
+            <h2 class="card-title">
+              Pastel de Carne
+              <div class="badge badge-secondary">NOVO</div>
+            </h2>
+            <p>Um delicioso e crocante pastel de carne</p>
+            <div class="font-bold">R$ 4,49</div>
+            <div class="rating rating-xs">
+              <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+              <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" />
+            </div>
+          </div>
+        </a>
+
+        <a href="/produto" class="card bg-base-100 shadow-xl">
+          <figure>
+            <img
+              class="object-cover w-full h-44"
+              src="https://kyodai.com.br/wp-content/uploads/2018/07/cox_grande_kyodai_2-1.jpeg"
+            />
+          </figure>
+          <div class="card-body p-6">
+            <h2 class="card-title">Coxinha de Frango</h2>
+            <p>A melhor da região</p>
+            <div class="font-bold">R$ 2,99</div>
+            <div class="rating rating-xs">
+              <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+              <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+            </div>
+          </div>
+        </a>
+
+        <a href="/produto" class="card bg-base-100 shadow-xl">
+          <figure>
+            <img
+              class="object-cover w-full h-44"
+              src="https://files.sunoresearch.com.br/n/uploads/2023/04/coca-cola-resultados-1t23.jpg"
+            />
+          </figure>
+          <div class="card-body p-6">
+            <h2 class="card-title">Coca-Cola</h2>
+            <p>Para acompanhar o seu lanche</p>
+            <div class="font-bold">R$ 3,99</div>
+            <div class="rating rating-xs">
+              <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" />
+              <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
+              <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" />
+            </div>
+          </div>
+        </a>
+      </div>
+    </main>
+
+    <!-- Rodapé -->
+    <div class="bg-base-200">
+      <footer class="footer p-10 text-base-content mt-8 container mx-auto max-w-6xl">
+        <aside>
+          <img src="/static/img/logo.svg" alt="Logo" class="h-10" />
+          <p>
+            Kardapyo Lanches
+            <br />
+            Desenvolvido por Jefferson Dantas
+            <br />
+            <br />
+            <b
+              >Este site é apenas um design,<br />
+              não se trata de um comércio real</b
+            >
+          </p>
+        </aside>
+        <nav>
+          <h6 class="footer-title">Redes sociais</h6>
+          <a class="link link-hover"><i class="fa-fw fa-brands fa-instagram"></i> Instagram</a>
+          <a class="link link-hover"><i class="fa-fw fa-brands fa-facebook"></i> Facebook</a>
+          <a class="link link-hover"><i class="fa-fw fa-brands fa-youtube"></i> YouTube</a>
+          <a class="link link-hover"><i class="fa-fw fa-brands fa-x-twitter"></i> Twitter (X)</a>
+        </nav>
+        <nav>
+          <h6 class="footer-title">Empresa</h6>
+          <a target="_blank" href="https://jeffersondantas.vercel.app" class="link link-hover">Sobre nós</a>
+          <a target="_blank" href="https://www.linkedin.com/in/jose-jefferson" class="link link-hover">Contato</a>
+          <a target="_blank" href="https://github.com/josejefferson" class="link link-hover">GitHub</a>
+          <a target="_blank" href="https://github.com/josejefferson/kardapyo" class="link link-hover">Código Fonte</a>
+        </nav>
+        <nav>
+          <h6 class="footer-title">Legal</h6>
+          <a class="link link-hover">Termos de Uso</a>
+          <a class="link link-hover">Política de Privacidade</a>
+          <a class="link link-hover">Política de Cookies</a>
+        </nav>
+      </footer>
+    </div>
+
+    <script>
+      const $search = document.querySelector('.search')
+      const $searchTerm = document.querySelector('.search-term')
+      $search.value = search
+      $searchTerm.innerText = search
+      $search.focus()
+    </script>
+  </body>
+</html>
