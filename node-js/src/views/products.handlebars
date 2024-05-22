@@ -1,0 +1,79 @@
+<!-- Produtos -->
+<main class="overflow-x-auto container px-4 mt-8 mx-auto max-w-6xl">
+  <h1 class="text-5xl font-thin mb-8">Gerenciar cardápio</h1>
+
+  {{#if products.length}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="w-0">
+            <div class="tooltip tooltip-right" data-tip="Adicionar produto">
+              <a href="/admin/products/create" class="btn btn-primary btn-square btn-sm">
+                <i class="fa-solid fa-add"></i>
+              </a>
+            </div>
+          </th>
+          <th class="w-0">Imagem</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th class="w-0">Avaliação</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+          <tr>
+            <td>
+              <div class="flex gap-1 flex-col md:flex-row">
+                <div class="tooltip" data-tip="Editar">
+                  <a href="/admin/products/edit/{{this.id}}" class="btn btn-sm btn-square btn-outline btn-primary">
+                    <i class="fa-solid fa-pen"></i>
+                  </a>
+                </div>
+                <div class="tooltip" data-tip="Excluir">
+                  <label for="delete-modal-{{this.id}}" class="btn btn-sm btn-square btn-outline btn-error"
+                    tabindex="0">
+                    <i class="fa-solid fa-trash"></i>
+                  </label>
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <img class="mask mask-squircle w-12 h-12 object-cover" src="{{this.image}}" />
+            </td>
+
+            <td>
+              <div class="font-bold">{{this.name}}</div>
+              <div class="text-sm opacity-50">{{currency this.price}}</div>
+            </td>
+
+            <td>{{this.description}}</td>
+
+            <td>
+              <div class="rating">
+                <input type="radio" name="rating-{{this.id}}" class="mask mask-star-2 bg-orange-400" />
+                <input type="radio" name="rating-{{this.id}}" class="mask mask-star-2 bg-orange-400" />
+                <input type="radio" name="rating-{{this.id}}" class="mask mask-star-2 bg-orange-400" />
+                <input type="radio" name="rating-{{this.id}}" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-{{this.id}}" class="mask mask-star-2 bg-orange-400" />
+              </div>
+            </td>
+          </tr>
+        {{/each}}
+
+        {{!-- Modals --}}
+        {{#each products}}
+          {{> product-delete}}
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <div class="text-center text-gray-400 my-32">
+      <i class="fa-solid fa-pizza-slice text-9xl"></i>
+      <h1 class="text-3xl font-medium my-6">Não há produtos</h1>
+      <a href="/admin/products/create" class="btn btn-primary btn-outline">
+        <i class="fa-solid fa-add"></i> Adicionar produto
+      </a>
+    </div>
+  {{/if}}
+</main>

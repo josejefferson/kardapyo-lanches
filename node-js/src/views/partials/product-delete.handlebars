@@ -1,0 +1,14 @@
+<input type="checkbox" id="delete-modal-{{this.id}}" class="modal-toggle" />
+<div class="modal" role="dialog">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Excluir "{{this.name}}"</h3>
+    <p class="py-4">Tem certeza que deseja excluir o produto "{{this.name}}"?</p>
+    <div class="modal-action">
+      <form action="/admin/products/delete/{{this.id}}" method="POST">
+        <input type="hidden" name="_csrf" value="{{@root.csrf}}">
+        <button type="submit" class="btn btn-error">Sim</button>
+      </form>
+      <label for="delete-modal-{{this.id}}" class="btn">Não</label>
+    </div>
+  </div>
+</div>

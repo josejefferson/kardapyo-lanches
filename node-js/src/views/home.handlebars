@@ -1,0 +1,21 @@
+<!-- Banner -->
+<div class="banner text-white mt-6">
+  <div class="bg-black/50">
+    <div class="container px-4 mx-auto max-w-6xl py-10 md:py-20">
+      <h1 class="text-5xl font-semibold mb-8">Os melhores Lanches, você encontra aqui!</h1>
+      <h2 class="text-2xl font-thin mb-8 md:mb-14">Variedade e qualidade que só a gente tem!</h2>
+      <a href="#cardapio" class="btn btn-primary">VEJA O NOSSO CARDÁPIO</a>
+    </div>
+  </div>
+</div>
+
+<!-- Produtos -->
+<main id="cardapio" class="container px-4 mt-8 mx-auto max-w-6xl">
+  <h1 class="text-5xl font-thin mb-8">Nosso cardápio</h1>
+
+  <div class="grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
+    {{#each products}}
+      {{> product}}
+    {{/each}}
+  </div>
+</main>

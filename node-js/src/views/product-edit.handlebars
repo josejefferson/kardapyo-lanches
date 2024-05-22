@@ -1,0 +1,53 @@
+<main class="container px-4 mt-8 mx-auto max-w-6xl">
+  {{#if product}}
+    <h1 class="text-5xl font-thin mb-8">Editar produto "{{product.name}}"</h1>
+
+    <label for="delete-modal-{{product.id}}" class="btn btn-error btn-outline mb-8" tabindex="0">
+      <i class="fa-solid fa-trash"></i> Excluir produto
+    </label>
+
+    {{#with product as | this|}}
+      {{> product-delete}}
+    {{/with}}
+  {{else}}
+    <h1 class="text-5xl font-thin mb-8">Adicionar novo produto</h1>
+  {{/if}}
+
+  <form action="/admin/products{{#if product}}/edit/{{product.id}}{{else}}/create{{/if}}" method="POST">
+    <input type="hidden" name="_csrf" value="{{@root.csrf}}">
+    <label class="form-control w-full mb-4">
+      <div class="label font-bold">
+        <span class="label-text">Nome</span>
+      </div>
+      <input type="text" name="name" class="input input-bordered w-full" value="{{product.name}}" required autofocus />
+    </label>
+
+    <label class="form-control w-full mb-4">
+      <div class="label font-bold">
+        <span class="label-text">Descrição</span>
+      </div>
+      <textarea name="description" class="textarea textarea-bordered w-full" required>{{product.description}}</textarea>
+    </label>
+
+    <label class="form-control w-full mb-4">
+      <div class="label font-bold">
+        <span class="label-text">Preço</span>
+      </div>
+      <label class="input input-bordered flex items-center gap-2">
+        R$
+        <input type="number" min="0" step="0.01" class="grow" name="price" value="{{product.price}}" required />
+      </label>
+    </label>
+
+    <label class="form-control w-full mb-4">
+      <div class="label font-bold">
+        <span class="label-text">URL da imagem</span>
+      </div>
+      <input type="url" name="image" class="input input-bordered w-full" value="{{product.image}}" required />
+    </label>
+
+    <button type="submit" class="btn btn-primary">
+      <i class="fa-solid fa-floppy-disk"></i> Salvar
+    </button>
+  </form>
+</main>

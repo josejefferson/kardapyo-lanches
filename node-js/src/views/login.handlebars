@@ -1,0 +1,42 @@
+<main class="hero bg-base-200 mt-8" style="background-image: url(/static/img/banner.jpg)">
+  <div class="hero-overlay bg-opacity-60"></div>
+  <div class="hero-content gap-8 flex-col lg:flex-row-reverse container px-4 py-16 mx-auto max-w-6xl">
+    <div class="text-center lg:text-left text-white">
+      <h1 class="text-5xl font-bold">Bem-vindo!</h1>
+
+      <p class="py-6 text-xl">Faça login para gerenciar nosso delicioso cardápio.</p>
+
+      <div class="carousel rounded-box h-32 max-w-96 d-none hidden lg:inline-flex">
+        {{#each products}}
+          <div class="carousel-item">
+            <img src="{{this.image}}" alt="{{this.name}}" />
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <form action="/login" method="POST" class="card-body">
+        <input type="hidden" name="_csrf" value="{{@root.csrf}}">
+        <label class="form-control">
+          <div class="label font-bold">
+            <span class="label-text">E-mail</span>
+          </div>
+          <input type="email" name="email" placeholder="Digite seu E-mail" class="input input-bordered" autofocus
+            required />
+        </label>
+        <label class="form-control">
+          <div class="label font-bold">
+            <span class="label-text">Senha</span>
+          </div>
+          <input type="password" name="password" placeholder="Digite sua Senha" class="input input-bordered" required />
+          <label class="label">
+            <a href="#" class="label-text-alt link link-hover">Esqueceu sua senha?</a>
+          </label>
+        </label>
+        <div class="form-control mt-6">
+          <button type="submit" class="btn btn-primary">ENTRAR</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

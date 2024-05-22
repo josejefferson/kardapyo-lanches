@@ -1,0 +1,14 @@
+<div class="toast toast-top toast-end z-[1]">
+  {{#each messages as |messages type|}}
+    {{#each messages}}
+      <input type="radio" class="toast-close" id="{{type}}-{{@index}}">
+      <div class="toast-item alert alert-{{type}} min-w-md max-w-md text-white">
+        <div class="shrink-0 fa-solid fa-circle-info text-xl"></div>
+        <span class="whitespace-normal">{{this}}</span>
+        <label for="{{type}}-{{@index}}" class="shrink-0 btn btn-square btn-ghost btn-sm" tabindex="0">
+          <i class="fa-solid fa-close text-xl"></i>
+        </label>
+      </div>
+    {{/each}}
+  {{/each}}
+</div>
