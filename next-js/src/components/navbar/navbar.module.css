@@ -1,0 +1,10 @@
+.navbar {
+  background-image: linear-gradient(to right, #ff594622, #ff594622 56px, #f1f3f222 56px, #f1f3f222);
+  background-size: 112px 100%;
+}
+
+.detalhe {
+  background-image: url('/img/detalhe.svg');
+  background-repeat: repeat-x;
+  height: 32px;
+}
