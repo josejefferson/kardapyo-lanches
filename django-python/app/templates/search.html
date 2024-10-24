@@ -1,0 +1,14 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+<!-- Produtos -->
+<main class="container px-4 mt-8 mx-auto max-w-6xl">
+  <h1 class="text-5xl font-thin mb-8">Resultados para "{{ search }}"</h1>
+
+  <div class="grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
+    {% for product in products %}
+      {% include 'partials/product.html' with product=product %}
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

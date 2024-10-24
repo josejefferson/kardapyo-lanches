@@ -1,0 +1,83 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+<!-- Produtos -->
+<main class="overflow-x-auto container px-4 mt-8 mx-auto max-w-6xl">
+  <h1 class="text-5xl font-thin mb-8">Gerenciar cardápio</h1>
+
+  {% if products|length > 0 %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="w-0">
+            <div class="tooltip tooltip-right" data-tip="Adicionar produto">
+              <a href="{% url 'product_create' %}" class="btn btn-primary btn-square btn-sm">
+                <i class="fa-solid fa-add"></i>
+              </a>
+            </div>
+          </th>
+          <th class="w-0">Imagem</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th class="w-0">Avaliação</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          <tr>
+            <td>
+              <div class="flex gap-1 flex-col md:flex-row">
+                <div class="tooltip" data-tip="Editar">
+                  <a href="{% url 'product_edit' product.id %}" class="btn btn-sm btn-square btn-outline btn-primary">
+                    <i class="fa-solid fa-pen"></i>
+                  </a>
+                </div>
+                <div class="tooltip" data-tip="Excluir">
+                  <label for="delete-modal-{{ product.id }}" class="btn btn-sm btn-square btn-outline btn-error"
+                    tabindex="0">
+                    <i class="fa-solid fa-trash"></i>
+                  </label>
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <img class="mask mask-squircle w-12 h-12 object-cover" src="{{ product.image }}" />
+            </td>
+
+            <td>
+              <div class="font-bold">{{ product.name }}</div>
+              <div class="text-sm opacity-50">R$ {{ product.price | floatformat:'2g' }}</div>
+            </td>
+
+            <td>{{ product.description }}</td>
+
+            <td>
+              <div class="rating">
+                <input type="radio" name="rating-{{ product.id }}" class="mask mask-star-2 bg-orange-400" />
+                <input type="radio" name="rating-{{ product.id }}" class="mask mask-star-2 bg-orange-400" />
+                <input type="radio" name="rating-{{ product.id }}" class="mask mask-star-2 bg-orange-400" />
+                <input type="radio" name="rating-{{ product.id }}" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-{{ product.id }}" class="mask mask-star-2 bg-orange-400" />
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+
+        {# Modals #}
+        {% for product in products %}
+          {% include 'partials/product-delete.html' with product=product %}
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="text-center text-gray-400 my-32">
+      <i class="fa-solid fa-pizza-slice text-9xl"></i>
+      <h1 class="text-3xl font-medium my-6">Não há produtos</h1>
+      <a href="{% url 'product_create' %}" class="btn btn-primary btn-outline">
+        <i class="fa-solid fa-add"></i> Adicionar produto
+      </a>
+    </div>
+  {% endif %}
+</main>
+{% endblock %}

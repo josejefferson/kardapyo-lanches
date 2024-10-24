@@ -1,0 +1,27 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+<main class="container px-4 mt-8 mx-auto max-w-6xl">
+  {% if product %}
+    <h1 class="text-5xl font-thin mb-8">Editar produto "{{ product.name }}"</h1>
+
+    <label for="delete-modal-{{ product.id }}" class="btn btn-error btn-outline mb-8" tabindex="0">
+      <i class="fa-solid fa-trash"></i> Excluir produto
+    </label>
+
+    {% include 'partials/product-delete.html' with product=product %}
+  {% else %}
+    <h1 class="text-5xl font-thin mb-8">Adicionar novo produto</h1>
+  {% endif %}
+
+  <form action="{% if product %}{% url 'product_edit' product.id %}{% else %}{% url 'product_create' %}{% endif %}" method="POST">
+    {% csrf_token %}
+
+    {{ form }}
+
+    <button type="submit" class="btn btn-primary">
+      <i class="fa-solid fa-floppy-disk"></i> Salvar
+    </button>
+  </form>
+</main>
+{% endblock %}

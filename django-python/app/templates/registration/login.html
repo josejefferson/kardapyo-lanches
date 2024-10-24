@@ -1,0 +1,71 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+<main class="hero bg-base-200 mt-8" style="background-image: url(/static/img/banner.jpg)">
+  <div class="hero-overlay bg-opacity-60"></div>
+  <div class="hero-content gap-8 flex-col lg:flex-row-reverse container px-4 py-16 mx-auto max-w-6xl">
+    <div class="text-center lg:text-left text-white">
+      <h1 class="text-5xl font-bold">Bem-vindo!</h1>
+
+      <p class="py-6 text-xl">Faça login para gerenciar nosso delicioso cardápio.</p>
+
+      <div class="carousel rounded-box h-32 max-w-96 d-none hidden lg:inline-flex">
+        {% for product in products %}
+        <div class="carousel-item">
+          <img src="{{ product.image }}" alt="{{ product.name }}" />
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <form action="{% url 'login' %}" method="POST" class="card-body">
+        {% csrf_token %}
+
+        <input type="hidden" name="next" value="{{ next }}" />
+
+        <label class="form-control">
+          <div class="label font-bold">
+            <span class="label-text">E-mail</span>
+          </div>
+          <input
+            type="text"
+            name="{{ form.username.html_name }}"
+            autofocus
+            autocapitalize="none"
+            autocomplete="username"
+            maxlength="{{ form.username.field.max_length }}"
+            required
+            value="{{ form.username.value | default_if_none:'' }}"
+            class="input input-bordered"
+            placeholder="Digite seu E-mail"
+          />
+        </label>
+
+        <label class="form-control">
+          <div class="label font-bold">
+            <span class="label-text">Senha</span>
+          </div>
+          <input
+            type="password"
+            name="{{ form.password.html_name }}"
+            autocomplete="current-password"
+            required
+            class="input input-bordered {% if form.errors %}input-error{% endif %}"
+            placeholder="Digite sua Senha"
+          />
+          <label class="label">
+            {% if form.errors %}
+            <span class="label-text-alt text-error">Usuário ou senha incorretos</span>
+            {% endif %}
+            <a href="{% url 'password_reset' %}" class="label-text-alt link link-hover">Esqueceu sua senha?</a>
+          </label>
+        </label>
+
+        <div class="form-control mt-6">
+          <button type="submit" class="btn btn-primary">ENTRAR</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}
